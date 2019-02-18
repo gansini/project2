@@ -10,7 +10,7 @@
             <i slot="prefix" class="iconfont icon-user"></i>
           </el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="password" >
           <el-input v-model="loginform.password" type="password">
             <i slot="prefix" class="iconfont icon-3702mima"></i>
           </el-input>
@@ -31,8 +31,8 @@ export default {
   data() {
     return {
       loginform: {
-        username: 'admin',
-        password: '123456'
+        username: '',
+        password: ''
       },
       loginFormrule: {
         username: [

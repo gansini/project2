@@ -21,17 +21,14 @@
           :style="shousuo?'width:65px':'width:200px'"
           :collapse="shousuo"
           :collapse-transition="true"
+          :router="true"
         >
           <el-submenu :index="item.id+''" v-for="(item, k) in message" :key="item.id">
             <template slot="title">
               <i :class="'iconfont icon-'+icon[k]"></i>
               <span>{{item.authName}}</span>
             </template>
-            <el-menu-item
-              :index="item.id+'-'+item2.id"
-              v-for="item2 in item.children"
-              :key="item2.id"
-            >
+            <el-menu-item :index="item.path" v-for="item2 in item.children" :key="item2.id">
               <i class="el-icon-menu"></i>
               {{item2.authName}}
             </el-menu-item>
@@ -60,7 +57,6 @@ export default {
   methods: {
     async getmessage() {
       const { data: res } = await this.$http.get('/menus')
-      console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.err(res.meta.msg)
       }
@@ -119,6 +115,7 @@ export default {
 }
 .el-aside {
   background-color: #373d41;
+  overflow: hidden;
 }
 .el-main {
   background-color: #eaedf1;

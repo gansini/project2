@@ -4,20 +4,24 @@ import Router from 'vue-router'
 import home from '@/components/Home'
 import login from '@/components/login'
 import welcome from '@/components/welcome'
+import user from '@/components/user'
 Vue.use(Router)
 var router = new Router({
-  routes: [{
-    path: '/home',
-    component: home,
-    redirect: '/welcome',
-    children: [{
-      path: '/welcome',
-      component: welcome
-    }]
-  }, {
-    path: '/login',
-    component: login
-  }]
+  routes: [
+    {
+      path: '/login',
+      component: login
+    },
+    {
+      path: '/home',
+      component: home,
+      redirect: '/welcome',
+      children: [
+        { path: '/welcome', component: welcome },
+        { path: '/users', component: user }
+      ]
+    }
+  ]
 })
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
